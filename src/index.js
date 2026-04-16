@@ -61,5 +61,12 @@ app.post('/orders', (req, res) => {
   res.status(201).json(newOrder);
 });
 
+// 付款端點
+app.post('/payments', (req, res) => {
+  const { orderId, method } = req.body;
+  if (!orderId || !method) return res.status(400).json({ error: 'orderId and method required' });
+  res.status(201).json({ orderId, method, status: 'pending' });
+});
+
 // 讓程式可被測試
 module.exports = app;
