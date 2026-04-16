@@ -28,5 +28,26 @@ app.post('/users', (req, res) => {
   res.status(201).json(newUser);
 });
 
+// 假資料 Orders
+let orders = [
+  { id: 1, userId: 1, product: 'Book', amount: 30 },
+  { id: 2, userId: 2, product: 'Pen', amount: 5 },
+];
+
+// GET /orders
+app.get('/orders', (req, res) => {
+  res.json(orders);
+});
+
+// POST /orders
+app.post('/orders', (req, res) => {
+  const { userId, product, amount } = req.body;
+  if (!userId || !product || typeof amount !== 'number')
+    return res.status(400).json({ error: 'invalid payload' });
+  const newOrder = { id: orders.length + 1, userId, product, amount };
+  orders.push(newOrder);
+  res.status(201).json(newOrder);
+});
+
 // 讓程式可被測試
 module.exports = app;
