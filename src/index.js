@@ -24,6 +24,11 @@ const users = [
 ];
 
 app.get('/users', (req, res) => {
+  const { name } = req.query;
+  if (name) {
+    const result = users.filter(u => u.name.toLowerCase().includes(name.toLowerCase()));
+    return res.json(result);
+  }
   res.json(users);
 });
 
