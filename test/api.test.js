@@ -13,7 +13,7 @@ describe('API 基礎測試', () => {
   it('GET /users 應回傳預設使用者', async () => {
     const res = await request(app).get('/users');
     expect(res.status).to.equal(200);
-    expect(res.body).to.be.an('array').with.length(2);
+    expect(res.body).to.be.an('array').with.length(8);
   });
 
   it('POST /users 應建立新使用者', async () => {
