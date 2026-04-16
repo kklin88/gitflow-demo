@@ -54,7 +54,7 @@ app.get('/orders', (req, res) => {
 // POST /orders
 app.post('/orders', (req, res) => {
   const { userId, product, amount } = req.body;
-  if (!userId || !product || typeof amount !== 'number')
+  if (!userId || !product || typeof amount !== 'number' || amount <= 0)
     return res.status(400).json({ error: 'invalid payload' });
   const newOrder = { id: orders.length + 1, userId, product, amount };
   orders.push(newOrder);
